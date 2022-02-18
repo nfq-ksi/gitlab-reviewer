@@ -34,14 +34,7 @@ class LocalStorage {
     }
     return [];
   }
-  public getSelectedProjectsRowsId(): any {
-    const projects = localStorage.getItem('selected_projects_rows');
-    if (projects) {
-      const projectIds = JSON.parse(projects);
-      return projectIds;
-    }
-    return {};
-  }
+
   public setRefreshRate(refreshRate: string) {
     return localStorage.setItem('refresh_rate', refreshRate);
   }
@@ -53,10 +46,6 @@ class LocalStorage {
 
   public setAccordionOpened(id: number, opened: boolean) {
     return localStorage.setItem('accordion_opened_' + id, opened ? '1' : '0');
-  }
-
-  public setSelectedProjectRows(selectedRowIds: any) {
-    return localStorage.setItem('selected_projects_rows', JSON.stringify(selectedRowIds));
   }
 }
 

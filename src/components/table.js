@@ -45,8 +45,21 @@ export function Table({ columns, data, updateMyData, skipReset }) {
     }),
     []
   );
+
   const selectedProjectIds = LocalStorage.getSelectedProjects();
-  const initialSelectedRows = LocalStorage.getSelectedProjectsRowsId();
+
+  const initialSelectedRows = () => {
+    let selectedRows = [];
+    selectedProjectIds.forEach((element, index) => {
+      data.forEach((element1, index1) => {
+        if (element === element1.id) {
+          selectedRows[index1] = element;
+        }
+      });
+    });
+
+    return selectedRows;
+  };
   const {
     getTableProps,
     getTableBodyProps,
@@ -72,7 +85,7 @@ export function Table({ columns, data, updateMyData, skipReset }) {
       autoResetPage: !skipReset,
       autoResetSelectedRows: !skipReset,
       initialState: {
-        selectedRowIds: initialSelectedRows,
+        selectedRowIds: initialSelectedRows(),
       },
       disableMultiSort: true,
     },
@@ -96,6 +109,7 @@ export function Table({ columns, data, updateMyData, skipReset }) {
 
             Cell: ({ row }) => {
               if (selectedProjectIds.includes(row.original.id)) {
+                console.log(row);
               }
               return (
                 <div>
@@ -109,12 +123,12 @@ export function Table({ columns, data, updateMyData, skipReset }) {
       });
     }
   );
+
   const saveIds = () => {
     const projectIds = Object.keys(selectedRowIds).map((rows) => {
       return { id: data[rows].id };
     });
     LocalStorage.setSelectedProjects(projectIds);
-    LocalStorage.setSelectedProjectRows(selectedRowIds);
   };
   return (
     <div className={'container mx-auto'} style={{ width: '1440px' }}>
