@@ -35,7 +35,7 @@ export class GitLabApi {
       const totalPagesInt = parseInt(totalPages, 10);
       if (!isNaN(totalPagesInt)) {
         if (totalPagesInt !== page && totalPagesInt > page) {
-          const totalPagesArr = Array.from({ length: totalPagesInt - page + 1 }, (v, k) => k + page + 1);
+          const totalPagesArr = Array.from({ length: totalPagesInt - page + 1 }, (v, k) => k + page);
           const promises = totalPagesArr.map((page) => this.getProjectByPage(page));
           const allPagesData = await Promise.all(promises);
           return allPagesData
