@@ -39,7 +39,7 @@ const MergeRequestItem = ({ mergeRequest }: Props): JSX.Element => {
               </div>
             </td>
             <td className="w-24 text-center">
-              {haveIUpVoted ? (
+              {haveIUpVoted || mergeRequest.approves.user_has_approved ? (
                 <UpvoteIcon size={'lg'} />
               ) : haveIDownVoted ? (
                 <DownvoteIcon size={'lg'} />
@@ -48,7 +48,13 @@ const MergeRequestItem = ({ mergeRequest }: Props): JSX.Element => {
               )}
             </td>
             <td className="w-24 text-center">
-              <Pill text={mergeRequest.upvotes} type={mergeRequest.upvotes > 0 ? 'success' : 'disable'} />
+              <Pill
+                text={mergeRequest.approves.approved_by.length}
+                type={mergeRequest.approves.approved_by.length > 1 ? 'success' : 'disable'}
+              />
+            </td>
+            <td className="w-24 text-center">
+              <Pill text={mergeRequest.upvotes} type={mergeRequest.upvotes > 1 ? 'success' : 'disable'} />
             </td>
             <td className="w-24 text-center">
               <Pill text={mergeRequest.downvotes} type={mergeRequest.downvotes > 0 ? 'danger' : 'disable'} />

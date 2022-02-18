@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import LocalStorage from 'services/LocalStorage';
 import { MergeRequest, Project } from 'types/FormattedTypes';
-import { EmojiType, MergeRequestSimpleType, MergeRequestType, ProjectType, User } from 'types/GitLabTypes';
+import { ApproveType, EmojiType, MergeRequestSimpleType, MergeRequestType, ProjectType, User } from 'types/GitLabTypes';
 
 interface ProjectTypeResponse {
   data: ProjectType[];
@@ -55,6 +55,8 @@ export class GitLabApi {
 
     const emojis = await this.getEmojisForMergeRequest(projectId, mergeRequestIid);
 
+    const approves = await this.getApprovesForMergeRequest(projectId, mergeRequestIid);
+
     const upvoters = emojis
       .filter((emoji: EmojiType) => emoji.name === 'thumbsup')
       .map((emoji: EmojiType) => emoji.user);
@@ -62,7 +64,7 @@ export class GitLabApi {
       .filter((emoji: EmojiType) => emoji.name === 'thumbsdown')
       .map((emoji: EmojiType) => emoji.user);
 
-    return { ...(mergeRequest as MergeRequestType), emojis, upvoters, downvoters };
+    return { ...(mergeRequest as MergeRequestType), emojis, upvoters, downvoters, approves };
   }
 
   private async getMergeRequestByProject(projectId: number): Promise<MergeRequest[]> {
@@ -81,6 +83,14 @@ export class GitLabApi {
     );
 
     return emojis;
+  }
+
+  private async getApprovesForMergeRequest(projectId: number, mergeRequestIid: number): Promise<ApproveType> {
+    const { data: approves } = await this.axios.get(
+      '/projects/' + projectId + '/merge_requests/' + mergeRequestIid + '/approvals'
+    );
+
+    return approves;
   }
 
   private async getDetailedMergeRequests(mergeRequests: MergeRequestSimpleType[]): Promise<MergeRequest[]> {

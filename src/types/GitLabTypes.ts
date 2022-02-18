@@ -88,6 +88,7 @@ export interface MergeRequestType {
   squash: boolean;
   approvals_before_merge: number | null;
   pipeline: Pipeline;
+  approves: ApproveType;
 }
 
 export interface ProjectType {
@@ -114,4 +115,11 @@ export interface EmojiType {
   id: number;
   name: string;
   user: User;
+}
+
+export interface ApproveType {
+  approved: boolean;
+  approved_by: User[];
+  user_can_approve: boolean;
+  user_has_approved: boolean;
 }

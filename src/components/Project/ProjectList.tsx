@@ -18,6 +18,7 @@ const ProjectList = ({ projects = [] }: Props): JSX.Element => {
               <th className="uppercase pl-4 p-0">Title</th>
               <th className="w-32 text-center uppercase p-0">Author</th>
               <th className="w-24 text-center uppercase p-0">My vote</th>
+              <th className="w-24 text-center uppercase p-0">Approves</th>
               <th className="w-24 text-xl text-center p-0">
                 <UpvoteIcon />
               </th>
