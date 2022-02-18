@@ -139,7 +139,9 @@ export class GitLabApi {
       return { ...project, mergeRequests: mergeRequestsForProject };
     });
 
-    return bundledProjects;
+    const filteredBundledProjects = bundledProjects.filter((project: Project) => project.mergeRequests.length !== 0);
+
+    return filteredBundledProjects;
   }
 
   public async getUser(): Promise<User> {
