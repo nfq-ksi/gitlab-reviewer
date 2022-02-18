@@ -12,7 +12,6 @@ export const GitLabApiProvider = ({ children }: PropsWithChildren<unknown>): JSX
     try {
       setApi(createGitLabApi());
     } catch (error) {
-      console.log(history);
       history.push('/settings');
     }
   }, [history]);

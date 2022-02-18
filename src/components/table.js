@@ -46,7 +46,7 @@ export function Table({ columns, data, updateMyData, skipReset }) {
     []
   );
   const selectedProjectIds = LocalStorage.getSelectedProjects();
-
+  const initialSelectedRows = LocalStorage.getSelectedProjectsRowsId();
   const {
     getTableProps,
     getTableBodyProps,
@@ -71,6 +71,9 @@ export function Table({ columns, data, updateMyData, skipReset }) {
       updateMyData,
       autoResetPage: !skipReset,
       autoResetSelectedRows: !skipReset,
+      initialState: {
+        selectedRowIds: initialSelectedRows,
+      },
       disableMultiSort: true,
     },
     useFilters,
@@ -111,8 +114,8 @@ export function Table({ columns, data, updateMyData, skipReset }) {
       return { id: data[rows].id };
     });
     LocalStorage.setSelectedProjects(projectIds);
+    LocalStorage.setSelectedProjectRows(selectedRowIds);
   };
-
   return (
     <div className={'container mx-auto'} style={{ width: '1440px' }}>
       <button
