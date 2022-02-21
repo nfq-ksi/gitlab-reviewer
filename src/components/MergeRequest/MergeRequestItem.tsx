@@ -28,7 +28,7 @@ const MergeRequestItem = ({ mergeRequest }: Props): JSX.Element => {
               >
                 <Emojify>{mergeRequest.title}</Emojify> <br />
                 <small className="text-xs">
-                  <b>{mergeRequest.source_branch}</b> =&gt; <b>{mergeRequest.target_branch}</b>
+                  <i>{mergeRequest.source_branch}</i> &rarr; <i>{mergeRequest.target_branch}</i>
                 </small>
               </a>
             </td>
