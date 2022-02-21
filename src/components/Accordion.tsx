@@ -28,7 +28,7 @@ const Accordion = ({ id, content, title }: Props): JSX.Element => {
         className="flex justify-between items-center px-4 py-2 cursor-pointer select-none text-indigo-600"
         onClick={toggleAccordion}
       >
-        <p className="font-semibold text-lg">{title}</p>
+        <p className="font-semibold text-sm">{title}</p>
         <FontAwesomeIcon icon={accordionOpened ? faChevronUp : faChevronDown} size="1x" />
       </div>
       {accordionOpened && content}

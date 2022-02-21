@@ -44,7 +44,7 @@ const Dashboard = (): JSX.Element | null => {
   if (projects.length === 0) {
     return (
       <div className="h-screen -mt-16 flex flex-col justify-center items-center">
-        <RocketIcon className="text-10xl text-indigo-200 mb-12" />
+        <RocketIcon className="text-8xl text-indigo-200 mb-12" />
         <p className="text-lg">Good job, there is no merge request to review! 🎉</p>
       </div>
     );

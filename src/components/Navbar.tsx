@@ -4,7 +4,7 @@ const Navbar = (): JSX.Element => {
   return (
     <nav className="flex items-center justify-between px-5 py-2 bg-white shadow-md">
       <div>
-        <Link className="text-indigo-600 no-underline inline-block font-semibold text-3xl tracking-tighter" to="/">
+        <Link className="text-indigo-600 no-underline inline-block font-semibold text-xl tracking-tighter" to="/">
           GitLab Reviewer
         </Link>
       </div>

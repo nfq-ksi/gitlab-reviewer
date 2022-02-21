@@ -21,12 +21,15 @@ const MergeRequestItem = ({ mergeRequest }: Props): JSX.Element => {
           <tr>
             <td>
               <a
-                className="text-xl no-underline text-black"
+                className="text-sm no-underline text-black"
                 href={mergeRequest.web_url}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Emojify>{mergeRequest.title}</Emojify>
+                <Emojify>{mergeRequest.title}</Emojify> <br />
+                <small className="text-xs">
+                  <b>{mergeRequest.source_branch}</b> =&gt; <b>{mergeRequest.target_branch}</b>
+                </small>
               </a>
             </td>
             <td className="w-32">
